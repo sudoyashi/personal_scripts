@@ -1,0 +1,26 @@
+#!/bin/bash
+# install developer tools for IT
+
+echo "The following tools will be installed:"
+echo "Homebrew, rvm, "
+echo "Installing developer tools"
+
+#install Homebrew
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+
+#install ruby
+\curl -sSL https://get.rvm.io | bash -s stable --ruby
+
+#install yarn
+#use and share other code online
+brew install yarn
+
+#install pow
+#setup and automate tasks for file-host servers
+#it makes developing Rails and Rack applications as frictionless as possible
+\curl get.pow.cx | sh
+
+#finished
+echo "Installed applications. Exiting..."
+exit
