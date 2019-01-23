@@ -1,0 +1,24 @@
+#!/bin/bash
+
+echo "Checking if Java installation exists"
+if [ -a "/Library/Internet Plug-Ins/JavaAppletPlugin.plugin" ]
+  then
+    echo "---- JavaAppletPlugin.plugin exists. ----- "
+    read -p "Continue (y/n)?" choice
+      case "$choice" in
+          y|Y ) echo "yes"; echo "---- Uninstalling Java, input admin access when prompted ---- "
+          sudo rm -rf "/Library/Internet Plug-Ins/JavaAppletPlugin.plugin"
+          sudo rm -rf "/Library/PreferencePanes/JavaControlPanel.prefPane"
+          sudo rm -rf "~/Library/Application Support/Java*"
+
+          echo "Java Uninstalled."
+          echo "...exiting.";;
+
+          n|N ) echo "no"; exit;;
+          * ) echo "invalid";;
+    esac
+fi
+
+echo "....exiting."
+sleep "3"
+exit

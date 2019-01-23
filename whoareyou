@@ -1,0 +1,18 @@
+#!/bin/bash
+
+echo Who are you?
+
+read who
+echo Hello, $who!
+
+
+echo Who\'s the boss?
+
+read boss
+echo Hell yeah, $boss is the boss.
+sleep 2
+echo Now go back to work.
+sleep 1
+for (( i = 0; i < 10; i++ )); do
+  echo ":^)"
+done

@@ -1,0 +1,50 @@
+#!/bin/bash
+
+# Install ocropy in MacOS:
+
+## 1. Install Homebrew package manager:
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+## 2. Install python
+brew install python
+
+## 3. Install virtualenv via pip/python:
+pip install virtualenv
+
+## 4. Clone OCRopus repo locally:
+git clone https://github.com/tmbdev/ocropy
+
+## 5. Move into OCRopus repo and set up the python virtual environment:
+cd ocropy
+virtualenv ocropus_venv/
+source ocropus_venv/bin/activate
+
+## 6. Install OCRopus dependencies:
+brew install wget
+pip install -r requirements.txt
+wget -nd http://www.tmbdev.net/en-default.pyrnn.gz
+mv en-default.pyrnn.gz models/
+
+## 7. Install OCRopus:
+python setup.py install
+
+## 8. Workaround on MacOS using Homebrew python:
+echo "backend: TkAgg" > ~/.matplotlib/matplotlibrc
+
+## 9. Create desktop shortcut for launching OCRopus:
+echo "osascript -e 'tell application \"Terminal\" to do script \"cd ~/ocropy && source ocropus_venv/bin/activate\"'" > ~/Desktop/OCRopus.command
+chmod u+x ~/Desktop/OCRopus.command
+
+## 10. Confirm everything works (run recognition on tests/testpage.png and generates temp.html):
+./run-test
+
+
+##Possible error: ‘dyld: Library not loaded…’ run:
+## brew uninstall —force gettext
+## brew install gettext
+
+
+
+##Possible error: ‘python setup.py install’ may not work with python3
+## open new terminal window and run as python2
+## if python2 does not succeed, brew install python@2
