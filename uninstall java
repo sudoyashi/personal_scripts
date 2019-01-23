@@ -1,5 +1,6 @@
 #!/bin/bash
 # Script to manage Java installation. File only detects and deletes, manual install preferred version 
+
 echo "Checking if Java installation exists"
 if [ -a "/Library/Internet Plug-Ins/JavaAppletPlugin.plugin" ]
   then
